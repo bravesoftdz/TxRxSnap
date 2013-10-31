@@ -79,6 +79,7 @@ var
   myConcentrador: TConcentrador;
 begin
   Result := TJSONArray.Create;
+  CBC.Open;
   Concetradores.Open;
   while not Concetradores.Eof do
   Begin
@@ -97,7 +98,8 @@ begin
     myConcentrador.Port := I;
     Result.AddElement(ConcentradorToJSON(myConcentrador));
   end; }
-
+  Concetradores.Close;
+  CBC.Close;
 end;
 
 function TServerMethods2.QueryConcentrador: TJSONObject;

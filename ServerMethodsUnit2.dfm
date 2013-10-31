@@ -24,7 +24,6 @@ object ServerMethods2: TServerMethods2
     Top = 20
   end
   object Concetradores: TSQLDataSet
-    Active = True
     CommandText = 'Concetradores'
     CommandType = ctTable
     DbxCommandType = 'Dbx.Table'

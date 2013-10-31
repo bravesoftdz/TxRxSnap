@@ -1,4 +1,4 @@
-// 
+//
 // Created by the DataSnap proxy generator.
 // 
 
@@ -6,9 +6,12 @@ unit ClientProxy;
 
 interface
 
-uses DBXCommon, DBXJSON, Classes, SysUtils, DB, SqlExpr, DBXDBReaders;
+uses Data.DBXCommon, Data.DBXJSON, System.Classes, system.SysUtils, Data.DB, Data.SqlExpr,
+     Data.DBXDBReaders, Datasnap.DBClient, Data.DBXClient;
 
 type
+
+
   TServerMethods2Client = class
   private
     FDBXConnection: TDBXConnection;
@@ -16,17 +19,32 @@ type
     FMVPCustomerCommand: TDBXCommand;
     FListofCustomerCommand: TDBXCommand;
     FListofListaConcetradorCommand : TDBXCommand;
+    FMVPDataSetCommand : TDBXCommand;
+
+
+    function GetData(Cds : TClientDataSet; Fields, Table: String) : TDBXReader;
+    function GetRecords(Fields, Table: String): TDBXReader;
+
+
+
   public
     constructor Create(ADBXConnection: TDBXConnection); overload;
     constructor Create(ADBXConnection: TDBXConnection; AInstanceOwner: Boolean); overload;
     destructor Destroy; override;
     function MVPCustomer: TJSONValue;
     function ListofCustomer: TJSONArray;
-
     function ListaConcetrador: TJSONArray;
-  end;
+
+//     function GetState: TDBXReader;
+    end;
+
+
+
 
 implementation
+
+
+
 
 function TServerMethods2Client.MVPCustomer: TJSONValue;
 begin
@@ -68,8 +86,6 @@ begin
 end;
 
 
-
-
 constructor TServerMethods2Client.Create(ADBXConnection: TDBXConnection);
 begin
   inherited Create;
@@ -96,5 +112,40 @@ begin
   FreeAndNil(FListofCustomerCommand);
   inherited;
 end;
+
+function TServerMethods2Client.GetData(Cds: TClientDataSet; Fields,
+  Table: String): TDBXReader;
+var
+  Reader : TDBXReader;
+
+begin
+    if not Cds.Active then // Not active means, never move the data to ClientDataSet – no cache
+      begin
+      Reader := GetRecords(Fields, Table);
+      //TDBXDataSetReader.CopyReaderToClientDataSet( Reader, Cds );
+
+      Reader.Free;
+      Cds.Open;
+    end;
+
+    Result := TDBXDataSetReader.Create(Cds, False (* InstanceOwner *) );
+end;
+
+function TServerMethods2Client.GetRecords(Fields, Table: String): TDBXReader;
+begin
+  if FMVPDataSetCommand = nil then
+  begin
+    FMVPDataSetCommand := FDBXConnection.CreateCommand;
+    try
+      FMVPDataSetCommand.Text := 'Select ' + Fields + ' from ' + Table;
+      Result := FMVPDataSetCommand.ExecuteQuery;
+    except
+      raise;
+    end;
+  end;
+end;
+
+
+
 
 end.
