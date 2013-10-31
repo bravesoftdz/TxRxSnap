@@ -2,8 +2,8 @@ object Form11: TForm11
   Left = 0
   Top = 0
   Caption = 'DataSnap Server'
-  ClientHeight = 116
-  ClientWidth = 464
+  ClientHeight = 128
+  ClientWidth = 480
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

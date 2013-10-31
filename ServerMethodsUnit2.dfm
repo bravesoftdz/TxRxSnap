@@ -31,7 +31,7 @@ object ServerMethods2: TServerMethods2
     MaxBlobSize = 1
     Params = <>
     SQLConnection = CBC
-    Left = 120
-    Top = 24
+    Left = 96
+    Top = 16
   end
 end

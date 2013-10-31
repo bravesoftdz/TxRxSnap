@@ -6,7 +6,8 @@ uses
   ServerContainerUnit3 in 'ServerContainerUnit3.pas' {ServerContainer3: TDataModule},
   Customer in 'Customer.pas',
   ServerForm in 'ServerForm.pas' {Form11},
-  Concentrador in 'Concentrador.pas';
+  Concentrador in 'Concentrador.pas',
+  ContatoUnit in 'ContatoUnit.pas';
 
 {$R *.res}
 
