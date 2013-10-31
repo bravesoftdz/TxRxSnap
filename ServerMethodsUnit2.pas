@@ -6,11 +6,13 @@ uses
   SysUtils, Classes, DSServer, DBXJSON,
   Data.DB, Datasnap.DBClient,
   // Define Customers
-  Customer, Concentrador;
+  Customer, Concentrador, Data.DbxSqlite, Data.SqlExpr, Data.FMTBcd;
 
 type
 
   TServerMethods2 = class(TDSServerModule)
+    CBC: TSQLConnection;
+    Concetradores: TSQLDataSet;
   private
     { Private declarations }
   protected
@@ -21,7 +23,11 @@ type
     { Public declarations }
     function MVPCustomer(): TJSONValue;
     function ListofCustomer(): TJSONArray;
+
     function ListaConcetrador():TJSONArray;
+
+    function QueryConcentrador():TJSONObject;
+
   end;
 
 var
@@ -69,10 +75,20 @@ end;
 
 function TServerMethods2.ListaConcetrador: TJSONArray;
 var
-  I: Integer;
+ // I: Integer;
   myConcentrador: TConcentrador;
 begin
   Result := TJSONArray.Create;
+  Concetradores.Open;
+  while not Concetradores.Eof do
+  Begin
+     myConcentrador := GetConcentrador;
+     myConcentrador.ID := Concetradores.FieldByName('id').AsInteger;
+     myConcentrador.IP_HOST := Concetradores.FieldByName('ip_host').AsString;;
+     myConcentrador.Port := Concetradores.FieldByName('port').AsInteger;;
+     Result.AddElement(ConcentradorToJSON(myConcentrador));
+     Concetradores.Next;
+  End;{
   for I := 0 to 19 do
   begin
     myConcentrador := GetConcentrador;
@@ -80,7 +96,15 @@ begin
     myConcentrador.IP_HOST := '192.168.0.'+IntToStr(I);
     myConcentrador.Port := I;
     Result.AddElement(ConcentradorToJSON(myConcentrador));
-  end;
+  end; }
+
+end;
+
+function TServerMethods2.QueryConcentrador: TJSONObject;
+var
+  myQuery :TSQLDataSet;
+begin
+   myQuery := Concetradores;
 
 end;
 
@@ -94,6 +118,8 @@ begin
   Result := CustomerToJSON(myCustomer);
   myCustomer.Free;
 end;
+
+
 {
   function TServerMethods2.RetornaOleVariant(Url, pSQL:string): TJSONArray;
   var
