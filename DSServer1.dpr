@@ -2,12 +2,11 @@ program DSServer1;
 
 uses
   Forms,
-  ServerMethodsUnit2
-    in 'ServerMethodsUnit2.pas' {ServerMethods2: TDSServerModule} ,
-  ServerContainerUnit3
-    in 'ServerContainerUnit3.pas' {ServerContainer3: TDataModule} ,
+  ServerMethodsUnit2 in 'ServerMethodsUnit2.pas' {ServerMethods2: TDSServerModule},
+  ServerContainerUnit3 in 'ServerContainerUnit3.pas' {ServerContainer3: TDataModule},
   Customer in 'Customer.pas',
-  ServerForm in 'ServerForm.pas' {Form11};
+  ServerForm in 'ServerForm.pas' {Form11},
+  Concentrador in 'Concentrador.pas';
 
 {$R *.res}
 

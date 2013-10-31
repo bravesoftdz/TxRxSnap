@@ -70,9 +70,9 @@ begin
   SQLConnection1.Open;
   try
     proxy := TServerMethods2Client.Create(SQLConnection1.DBXConnection);
-    allCustomers := proxy.ListofCustomer;
-
-    {for i := 0 to allCustomers.Size -1 do
+    allCustomers := proxy.ListaConcetrador;
+    {
+    for i := 0 to allCustomers.Size -1 do
     begin
       mySingleCustomer := JSONToCustomer(allCustomers.Get(i));
       MMCustomer.Lines.Add(mySingleCustomer.ToString);

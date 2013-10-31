@@ -21,8 +21,11 @@ type
     property MaritalStatus: TMaritalStatus read FMaritalStatus
       write FMaritalStatus;
 
-    function ToString: string; override;
+   // function ToString: string; override;
   end;
+
+
+
 
 function CustomerToJSON(Customer: TCustomer): TJSONValue;
 function JSONToCustomer(json: TJSONValue): TCustomer;
@@ -60,10 +63,10 @@ begin
   end;
 end;
 { TCustomer }
-
+ {
 function TCustomer.ToString: string;
 begin
   Result := Self.Name + ' - Age: ' + IntToStr(Self.Age);
 end;
-
+  }
 end.

@@ -15,12 +15,15 @@ type
     FInstanceOwner: Boolean;
     FMVPCustomerCommand: TDBXCommand;
     FListofCustomerCommand: TDBXCommand;
+    FListofListaConcetradorCommand : TDBXCommand;
   public
     constructor Create(ADBXConnection: TDBXConnection); overload;
     constructor Create(ADBXConnection: TDBXConnection; AInstanceOwner: Boolean); overload;
     destructor Destroy; override;
     function MVPCustomer: TJSONValue;
     function ListofCustomer: TJSONArray;
+
+    function ListaConcetrador: TJSONArray;
   end;
 
 implementation
@@ -50,6 +53,21 @@ begin
   FListofCustomerCommand.ExecuteUpdate;
   Result := TJSONArray(FListofCustomerCommand.Parameters[0].Value.GetJSONValue(FInstanceOwner));
 end;
+
+function TServerMethods2Client.ListaConcetrador: TJSONArray;
+begin
+  if FListofListaConcetradorCommand = nil then
+  begin
+    FListofListaConcetradorCommand := FDBXConnection.CreateCommand;
+    FListofListaConcetradorCommand.CommandType := TDBXCommandTypes.DSServerMethod;
+    FListofListaConcetradorCommand.Text := 'TServerMethods2.ListaConcetrador';
+    FListofListaConcetradorCommand.Prepare;
+  end;
+  FListofListaConcetradorCommand.ExecuteUpdate;
+  Result := TJSONArray(FListofListaConcetradorCommand.Parameters[0].Value.GetJSONValue(FInstanceOwner));
+end;
+
+
 
 
 constructor TServerMethods2Client.Create(ADBXConnection: TDBXConnection);

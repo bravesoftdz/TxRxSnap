@@ -134,7 +134,7 @@
                 <ClientProxy>drivername=DataSnap;hostname=localhost;port=211;</ClientProxy>
             </DataSnapProxy>
             <Platforms>
-                <Platform value="Android" ActiveMobileDevice="AVD_for_Nexus_4_by_Google">True</Platform>
+                <Platform value="Android" ActiveMobileDevice="AVD_for_Nexus_4">True</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
