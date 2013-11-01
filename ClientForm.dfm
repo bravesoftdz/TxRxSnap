@@ -74,7 +74,6 @@ object Form12: TForm12
         Text = 'By Gilson DeLima -> gilson.delima@gmail.com'
         Width = 50
       end>
-    ExplicitTop = 392
   end
   object BitBtn2: TBitBtn
     Left = 24

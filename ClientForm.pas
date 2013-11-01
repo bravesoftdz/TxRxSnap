@@ -138,6 +138,8 @@ var
 begin
   proxy := nil;
   //myCliente := TClientDataSet.Create(self);
+  myCliente.DisableControls;
+  myCliente.FieldDefs.Clear;
   myCliente.Close;
   myCliente.FieldDefs.Clear;
   myCliente.FieldDefs.Add('ID',ftInteger);
@@ -166,7 +168,6 @@ begin
      begin
        MyConcentrador := JSONToConcentrador(allCustomers.Get(i));
        MMCustomer.Lines.Add(MyConcentrador.ID.ToString+'->'+MyConcentrador.IP_HOST+'->'+MyConcentrador.Port.ToString());
-
        myCliente.Append; // Inserimos dados
        myCliente.FieldByName('ID').AsInteger := MyConcentrador.ID;
        myCliente.FieldByName('IP_HOST').AsString := MyConcentrador.IP_HOST;
@@ -174,9 +175,11 @@ begin
        myCliente.Post;
      end;
      myCliente.Open;
-  finally
-    SQLConnection1.Close;
-    proxy.Free;
+     myCliente.First;
+   finally
+     myCliente.EnableControls;
+     SQLConnection1.Close;
+     proxy.Free;
   end;
 
 
