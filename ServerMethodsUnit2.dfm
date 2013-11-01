@@ -33,4 +33,10 @@ object ServerMethods2: TServerMethods2
     Left = 96
     Top = 16
   end
+  object ClientDataSet1: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 48
+    Top = 96
+  end
 end

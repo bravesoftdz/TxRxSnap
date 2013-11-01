@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2009/09/09 14:55:15.893.dfm,C:\CodeGear\work\Andreano\Sample\Unit12.dfm=C:\Users\adriana\Documents\RAD Studio\Projects\Unit12.dfm</Transaction>
-    <Transaction>2009/09/09 14:55:15.893.pas,C:\CodeGear\work\Andreano\Sample\Unit12.pas=C:\Users\adriana\Documents\RAD Studio\Projects\Unit12.pas</Transaction>
-    <Transaction>2009/09/09 14:55:32.067.dproj,C:\CodeGear\work\Andreano\Sample\DSClient1.dproj=C:\Users\adriana\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2009/09/09 14:59:46.476.pas,C:\CodeGear\work\Andreano\Sample\ClientForm.pas=C:\CodeGear\work\Andreano\Sample\Unit1.pas</Transaction>
+    <Transaction>2009/09/09 14:55:15.893.dfm,C:\Users\adriana\Documents\RAD Studio\Projects\Unit12.dfm=C:\CodeGear\work\Andreano\Sample\Unit12.dfm</Transaction>
+    <Transaction>2009/09/09 14:55:15.893.pas,C:\Users\adriana\Documents\RAD Studio\Projects\Unit12.pas=C:\CodeGear\work\Andreano\Sample\Unit12.pas</Transaction>
+    <Transaction>2009/09/09 14:55:32.067.dproj,C:\Users\adriana\Documents\RAD Studio\Projects\Project1.dproj=C:\CodeGear\work\Andreano\Sample\DSClient1.dproj</Transaction>
+    <Transaction>2009/09/09 14:59:46.476.pas,C:\CodeGear\work\Andreano\Sample\Unit1.pas=C:\CodeGear\work\Andreano\Sample\ClientForm.pas</Transaction>
     <Transaction>2009/09/25 17:37:38.549.pas,C:\Users\Andreano\Documents\RAD Studio\Projects\Delphi 2010 Demos\ObjectTransfer\ClientProxy.pas=</Transaction>
-    <Transaction>2009/09/25 17:37:42.670.pas,C:\Users\Andreano\Documents\RAD Studio\Projects\Delphi 2010 Demos\ObjectTransfer\ClientProxy.pas=C:\Users\Andreano\Documents\RAD Studio\Projects\Delphi 2010 Demos\ObjectTransfer\Unit1.pas</Transaction>
+    <Transaction>2009/09/25 17:37:42.670.pas,C:\Users\Andreano\Documents\RAD Studio\Projects\Delphi 2010 Demos\ObjectTransfer\Unit1.pas=C:\Users\Andreano\Documents\RAD Studio\Projects\Delphi 2010 Demos\ObjectTransfer\ClientProxy.pas</Transaction>
   </Transactions>
 </BorlandProject>

@@ -13,6 +13,7 @@ type
   TServerMethods2 = class(TDSServerModule)
     CBC: TSQLConnection;
     Concetradores: TSQLDataSet;
+    ClientDataSet1: TClientDataSet;
   private
     { Private declarations }
   protected
@@ -28,7 +29,11 @@ type
 
     function QueryConcentrador():TJSONObject;
 
+    function ListofDifferentTypes: TJSONArray;
+
   end;
+
+
 
 var
   ServerMethods2: TServerMethods2;
@@ -36,6 +41,39 @@ var
 implementation
 
 {$R *.dfm}
+
+
+function TServerMethods2.ListofDifferentTypes: TJSONArray;
+var
+  strval: TJSONString;
+  trueval : TJSONTrue;
+  falseval : TJSONFalse;
+  numval: TJSONNumber;
+  objval : TJSONObject;
+begin
+
+
+  Result := TJSONArray.Create;
+
+  strval := TJSONString.Create('Retornar valor de String do Servidor DataSnap');
+  Result.AddElement(strval);
+
+  numval := TJSONNumber.Create(100);
+  Result.AddElement(numval);
+
+  numval := TJSONNumber.Create(99.99);
+  Result.AddElement(numval);
+
+  trueval := TJSONTrue.Create;
+  Result.AddElement(trueval);
+
+  falseval := TJSONFalse.Create;
+  Result.AddElement(falseval);
+
+  Result.AddElement(ConcentradorToJSON(GetConcentrador));
+
+end;
+
 
 
 
@@ -100,6 +138,10 @@ begin
   end; }
   Concetradores.Close;
   CBC.Close;
+
+
+
+
 end;
 
 function TServerMethods2.QueryConcentrador: TJSONObject;

@@ -19,13 +19,8 @@ type
     FMVPCustomerCommand: TDBXCommand;
     FListofCustomerCommand: TDBXCommand;
     FListofListaConcetradorCommand : TDBXCommand;
+    FListofDifferentTypesCommand  : TDBXCommand;
     FMVPDataSetCommand : TDBXCommand;
-
-
-    function GetData(Cds : TClientDataSet; Fields, Table: String) : TDBXReader;
-    function GetRecords(Fields, Table: String): TDBXReader;
-
-
 
   public
     constructor Create(ADBXConnection: TDBXConnection); overload;
@@ -34,17 +29,14 @@ type
     function MVPCustomer: TJSONValue;
     function ListofCustomer: TJSONArray;
     function ListaConcetrador: TJSONArray;
+    function ListofDifferentTypes : TJSONArray;
 
-//     function GetState: TDBXReader;
-    end;
+    function GetData(Cds : TClientDataSet; Fields, Table: String) : TDBXReader;
+    function GetRecords(Fields, Table: String): TDBXReader;
 
-
-
+  end;
 
 implementation
-
-
-
 
 function TServerMethods2Client.MVPCustomer: TJSONValue;
 begin
@@ -85,12 +77,26 @@ begin
   Result := TJSONArray(FListofListaConcetradorCommand.Parameters[0].Value.GetJSONValue(FInstanceOwner));
 end;
 
+function TServerMethods2Client.ListofDifferentTypes: TJSONArray;
+begin
+  if FListofDifferentTypesCommand = nil then
+  begin
+    FListofDifferentTypesCommand := FDBXConnection.CreateCommand;
+    FListofDifferentTypesCommand.CommandType := TDBXCommandTypes.DSServerMethod;
+    FListofDifferentTypesCommand.Text := 'TServerMethods2.ListofDifferentTypes';
+    FListofDifferentTypesCommand.Prepare;
+  end;
+  FListofDifferentTypesCommand.ExecuteUpdate;
+  Result := TJSONArray(FListofDifferentTypesCommand.Parameters[0].Value.GetJSONValue(FInstanceOwner));
+end;
+
+
 
 constructor TServerMethods2Client.Create(ADBXConnection: TDBXConnection);
 begin
   inherited Create;
   if ADBXConnection = nil then
-    raise EInvalidOperation.Create('Connection cannot be nil.  Make sure the connection has been opened.');
+    raise EInvalidOperation.Create('A conexão não pode ser nula. Certifique-se de que a conexão foi aberta.');
   FDBXConnection := ADBXConnection;
   FInstanceOwner := True;
 end;
@@ -100,7 +106,7 @@ constructor TServerMethods2Client.Create(ADBXConnection: TDBXConnection; AInstan
 begin
   inherited Create;
   if ADBXConnection = nil then
-    raise EInvalidOperation.Create('Connection cannot be nil.  Make sure the connection has been opened.');
+    raise EInvalidOperation.Create('A conexão não pode ser nula. Certifique-se de que a conexão foi aberta.');
   FDBXConnection := ADBXConnection;
   FInstanceOwner := AInstanceOwner;
 end;
@@ -122,7 +128,7 @@ begin
     if not Cds.Active then // Not active means, never move the data to ClientDataSet – no cache
       begin
       Reader := GetRecords(Fields, Table);
-      //TDBXDataSetReader.CopyReaderToClientDataSet( Reader, Cds );
+//      TDBXDataSetReader.CopyReaderToClientDataSet( Reader, Cds );
 
       Reader.Free;
       Cds.Open;
