@@ -11,7 +11,8 @@ uses  Winapi.Windows, System.Classes, Data.DBXDataSnap, Data.DBXCommon, Data.DB,
   Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.DBGrids,
   Datasnap.DBClient, Vcl.Buttons,
 
-  REST.Response.Adapter, REST.Client, REST.Json, IPPeerClient, Vcl.ComCtrls;
+  REST.Response.Adapter, REST.Client, REST.Json, IPPeerClient, Vcl.ComCtrls,
+  Vcl.ExtCtrls, Vcl.DBCtrls;
 
 
 type
@@ -26,6 +27,7 @@ type
     BitBtn1: TBitBtn;
     StatusBar1: TStatusBar;
     BitBtn2: TBitBtn;
+    DBNavigator1: TDBNavigator;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -109,7 +111,7 @@ var
   proxy: TServerMethods2Client;
   myMVPCustomer: TCustomer;
 begin
-
+  if myCliente.Active then myCliente.EmptyDataSet;
   SQLConnection1.Open;
   proxy := nil;
   try
@@ -131,7 +133,6 @@ var
   MyConcentrador : TConcentrador;
   allCustomers : TJSONArray;
   i: Integer;
-
   Reader : TDBXReader;
   XMLDadta : String;
 

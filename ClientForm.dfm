@@ -84,6 +84,14 @@ object Form12: TForm12
     TabOrder = 6
     OnClick = BitBtn2Click
   end
+  object DBNavigator1: TDBNavigator
+    Left = 312
+    Top = 384
+    Width = 280
+    Height = 65
+    DataSource = DataSource1
+    TabOrder = 7
+  end
   object SQLConnection1: TSQLConnection
     ConnectionName = 'DATASNAPCONNECTION'
     DriverName = 'DataSnap'

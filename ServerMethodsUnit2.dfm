@@ -1,7 +1,7 @@
 object ServerMethods2: TServerMethods2
   OldCreateOrder = False
-  Height = 157
-  Width = 285
+  Height = 176
+  Width = 382
   object CBC: TSQLConnection
     ConnectionName = 'CBC'
     DriverName = 'SQLite'
@@ -16,10 +16,7 @@ object ServerMethods2: TServerMethods2
         'MetaDataPackageLoader=TDBXSqliteMetaDataCommandFactory,DbxSqlite' +
         'Driver180.bpl'
       'FailIfMissing=False'
-      
-        'Database=C:\Users\gilson.delima\Documents\GitHub\TxRxSnap\cbc.s3' +
-        'db')
-    Connected = True
+      'Database=C:\Users\Amon\Documents\GitHub\TxRxSnap\cbc.s3db')
     Left = 35
     Top = 20
   end
@@ -30,13 +27,13 @@ object ServerMethods2: TServerMethods2
     MaxBlobSize = 1
     Params = <>
     SQLConnection = CBC
-    Left = 96
+    Left = 120
     Top = 16
   end
   object ClientDataSet1: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 48
-    Top = 96
+    Left = 216
+    Top = 16
   end
 end

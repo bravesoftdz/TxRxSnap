@@ -1,0 +1,49 @@
+[Original API Information]
+FileName=sscanf
+Version=1.01
+FileDate=January 27,1999
+SDKName=
+Originated=January 27, 1999
+
+[Conversion]
+FileName=
+FileDate=
+CurrentStatus=
+Version=
+LastUpdated=
+
+[Platform]
+win31=NO
+win95=YES
+win98=YES
+win2000=YES
+winNT=YES
+
+[General]
+APIName=stdio.h
+OneLineDescription=SScanf C function for Delphi 4
+NotesFilename=Readme.txt
+
+[Converters]
+Converter1=Clinton R. Johnson
+Converter2=
+Converter3=
+Converter4=
+Converter5=
+RefSite1=http://www.poboxes.com/xepol
+RefSite2=
+
+[Testers]
+Tester1=
+Tester2=
+Tester3=
+Tester4=
+Tester5=
+Tester6=
+Tester7=
+Tester8=
+Tester9=
+RefSite1=
+RefSite2=
+
+
